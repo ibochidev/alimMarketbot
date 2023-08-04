@@ -4,7 +4,7 @@ from aiogram.dispatcher import FSMContext, filters
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton,InlineKeyboardButton,InlineKeyboardMarkup,inline_keyboard
-BOT_TOKEN = "6489036760:AAEMSXauAdNZSP1Bkh2VH7X-vf5p9fEtgJc"
+BOT_TOKEN = "6489036760:AAE3rhZQEN3GhVkbmRjotoKITwI0LUzGccY"
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.dispatcher import FSMContext, filters
@@ -192,24 +192,24 @@ async def sss(mess:types.Message, state :  FSMContext):
 
     @dp.callback_query_handler(text="tasdiqlash")
     async def dd(mees: types.CallbackQuery):
-        await Usernarxi.cost.set()
-        @dp.message_handler(State=Usernarxi.cost)
-        async def narxi(narxi: types.Message):
-            narx = narxi.text
+        await mees.message.answer("Tasdiqlandi")
+        await mess.answer(f"Sizning buyurtmangiz tasdiqlandi to`lov qiling va botga chekni jonating\n karta raqam 860012345678 Ali Izzatulayev \n Jami summa 00.00",reply_markup=b)
+@dp.message_handler(text="To`lov qildim")
+async def tolov(meeees: types.Message ,state :  FSMContext):
+    await meeees.answer("Iltimos Tolov qilgan chekninggizni yuboring")
+    await UserTolov.name.set()
 
-            await mees.message.answer("Tasdiqlandi")
-            await mess.answer(f"Sizning buyurtmangiz tasdiqlandi to`lov qiling va botg    a chekni jonating\n karta raqam 860012345678 Ali Izzatulayev \n Jami summa {narx}",reply_markup=b)
-            @dp.message_handler(text="To`lov qildim")
-            async def tolov(meeees: types.Message ,state :  FSMContext):
-                    await meeees.answer("Iltimos Tolov qilgan chekninggizni yuboring")
-                    await UserTolov.name.set()
-                    @dp.message_handler(content_types=types.ContentType.PHOTO,state=UserTolov)
-                    async def process_email(message: types.Message, state: FSMContext):
-                        Photo = message.photo[-1]
-                        await state.update_data(image_id=Photo.file_id)
-                        user_data = await state.get_data()
-                        img = user_data["image_id"]
-                        await bot.send_photo(chat_id=-1001664527019 ,photo=img,caption=f"ism :{message.from_user.full_name},\n id : {message.from_user.id},\n username : @{message.from_user.username}\nTo`lov qilingan summa  : {narx}")
+@dp.message_handler(content_types='photo', state=UserTolov.name)
+async def tolof(mess: types.Message,state : FSMContext):
+    Photo = mess.photo[-1]
+    # Save the email to the state
+    await state.update_data(image_id=Photo.file_id)
+    aa = await state.get_data()
+    
+    photo = aa['image_id']
+    await mess.answer('Siz qilgan tolov : 000 (chekdagi summa aliqlovchi func ishlatilmagan) ')
+    await bot.send_photo(chat_id=-1001664527019 ,photo=photo, caption=f"Tolov qilingan summa : 00.0 \nfoydalanuvchi idsi : {mess.from_user.id}\nFoydalanuvchi : {mess.from_user.full_name}")
+    await state.finish()
 
 
 
