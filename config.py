@@ -4,7 +4,7 @@ from aiogram.types import ParseMode
 import logging
 from sql import Database
 
-ADMINS = ['6032988740','6041962881']
+ADMINS = ['6041962881']
 BOT_TOKEN = '6489036760:AAFCnWx_keKdEVi7Zcl3GlVfs_OqxXWW9Zc'
 
 bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
