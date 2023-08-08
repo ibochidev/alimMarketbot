@@ -169,6 +169,28 @@ async def inline_query(query: types.InlineQuery):
     except:
         await query.answer([], cache_time=5, switch_pm_parameter='start', switch_pm_text='Search Product ID 🔍')
 
+@dp.message_handler(text='💻Ijtimoiy tarmoqlar')
+async def tarmoq(mess:types.Message):
+    keyboard = types.InlineKeyboardMarkup()
+    but1 = types.InlineKeyboardButton('Telegram', url='https://t.me/alim_market')
+    but2 = types.InlineKeyboardButton('Instagram', url='https://instagram.com/alim_market.uz')
+    but3 = types.InlineKeyboardButton('Facebook', url='https://facebook.com/alim_marketuz')
+
+    keyboard.add(but1,but3,but2)
+    await mess.answer("<b>Bizning Ijtimoiy tarmoqlar👇👇</b>",reply_markup=keyboard)
+
+
+@dp.message_handler(text='☎Adminga bog`lanish')
+async def ddd(mess:types.Message):
+    keyboard = types.InlineKeyboardMarkup()
+    # Create some inline keyboard buttons
+    but = types.InlineKeyboardButton('Ali', url='https://t.me/alim_marketuz')
+    but1 = types.InlineKeyboardButton('Rustamjon', url='https://t.me/vediboi')
+    keyboard.add(but1,but)
+    await mess.reply("<b>Telefon raqami : </b><pre>+998935579955</pre>\n<b>Telefon raqami :</b> <pre>+998913670106</pre>", reply_markup=keyboard)
+
+
+
 
 if __name__ == '__main__':
     try:
