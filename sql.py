@@ -1,5 +1,5 @@
 import sqlite3
-class Database:
+class database:
     def __init__(self, path_to_db="main.db"):
         self.path_to_db = path_to_db
 
